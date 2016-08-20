@@ -14,7 +14,7 @@ var (
 	UserClient  *vaultapi.Client
 )
 
-const GEN_ADMIN_POLICY = "general-admin"
+const GEN_ADMIN_POLICY = "admin"
 const USERPASS_TEST_USER = "test_user"
 const USERPASS_TEST_PASSWORD = "password"
 
@@ -27,7 +27,7 @@ var _ = Describe("VaultPolicyManager", func() {
 		CheckError(err)
 
 		//General Admin Tests
-		err = CreateUpdatePolicy(AdminClient, GEN_ADMIN_POLICY, "gen-admin/sys.hcl")
+		err = CreateUpdatePolicy(AdminClient, GEN_ADMIN_POLICY, "policies/sys.hcl")
 		CheckError(err)
 		err = ApplyUserPolicy(AdminClient, USERPASS_TEST_USER, GEN_ADMIN_POLICY)
 		CheckError(err)
@@ -78,12 +78,12 @@ var _ = Describe("VaultPolicyManager", func() {
 			})
 
 			It("should be able to create a policy", func() {
-				err = CreateUpdatePolicy(UserClient, "test-policy", "gen-admin/sys.hcl")
+				err = CreateUpdatePolicy(UserClient, "test-policy", "policies/sys.hcl")
 				Expect(err).NotTo(HaveOccurred())
 			})
 
 			It("should be able to update a policy", func() {
-				err = CreateUpdatePolicy(UserClient, "test-policy", "gen-admin/sys.hcl")
+				err = CreateUpdatePolicy(UserClient, "test-policy", "policies/sys.hcl")
 				Expect(err).NotTo(HaveOccurred())
 			})
 
