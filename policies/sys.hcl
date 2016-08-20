@@ -54,3 +54,7 @@ path "/sys/revoke" {
   capabilities = ["create"]
 }
 
+path "/sys/key-status" {
+  capabilities = ["read"]
+}
+
