@@ -14,7 +14,7 @@ var (
 	UserClient  *vaultapi.Client
 )
 
-const GEN_ADMIN_POLICY = "admin"
+const ADMINISTRATOR_POLICY = "admin"
 const USERPASS_TEST_USER = "test_user"
 const USERPASS_TEST_PASSWORD = "password"
 
@@ -27,9 +27,9 @@ var _ = Describe("VaultPolicyManager", func() {
 		CheckError(err)
 
 		//General Admin Tests
-		err = CreateUpdatePolicy(AdminClient, GEN_ADMIN_POLICY, "policies/sys.hcl")
+		err = CreateUpdatePolicy(AdminClient, ADMINISTRATOR_POLICY, "policies/sys.hcl")
 		CheckError(err)
-		err = ApplyUserPolicy(AdminClient, USERPASS_TEST_USER, GEN_ADMIN_POLICY)
+		err = ApplyUserPolicy(AdminClient, USERPASS_TEST_USER, ADMINISTRATOR_POLICY)
 		CheckError(err)
 		UserClient, err = InitializeUserPassClient(USERPASS_TEST_USER, USERPASS_TEST_PASSWORD)
 		CheckError(err)
@@ -38,7 +38,7 @@ var _ = Describe("VaultPolicyManager", func() {
 
 	var _ = AfterSuite(func() {
 		err = DeleteUser(AdminClient, USERPASS_TEST_USER)
-		err = DeletePolicy(AdminClient, GEN_ADMIN_POLICY)
+		err = DeletePolicy(AdminClient, ADMINISTRATOR_POLICY)
 		CheckError(err)
 	})
 
@@ -51,9 +51,9 @@ var _ = Describe("VaultPolicyManager", func() {
 
 	})
 
-	Describe("Test General Admin Policy", func() {
+	Describe("Test Administrator Policy", func() {
 
-		Context("Initializing General Admin Policy", func() {
+		Context("Initializing Administrator Policy", func() {
 			It("should successfully initialize General Admin Policy", func() {
 				Expect(err).NotTo(HaveOccurred())
 			})
