@@ -27,3 +27,11 @@ func GetKeyStatus(c *vaultapi.Client) error {
 	}
 	return nil
 }
+
+func RotateKeys(c *vaultapi.Client) error {
+	_, err := c.Logical().Write("/sys/rotate", nil)
+	if err != nil {
+		return err
+	}
+	return nil
+}

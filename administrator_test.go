@@ -93,6 +93,11 @@ var _ = Describe("Test Administrator Policy", func() {
 			Expect(err).NotTo(HaveOccurred())
 		})
 
+		It("should be able to rotate encryption key", func() {
+			err = RotateKeys(UserClient)
+			Expect(err).NotTo(HaveOccurred())
+		})
+
 		// It("should be able to renew a lease", func() {
 		//  err = RenewLease(UserClient, lease_id, increment_duration)
 		//  Expect(err).NotTo(HaveOccurred())

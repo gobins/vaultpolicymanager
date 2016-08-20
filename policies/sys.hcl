@@ -19,7 +19,7 @@ path "/sys/auth" {
 }
 
 path "/sys/auth/*" {
-  capabilities = ["sudo","create","update","delete"]
+  capabilities = ["create","update","delete"]
 }
 
 path "/sys/policy" {
@@ -27,7 +27,7 @@ path "/sys/policy" {
 }
 
 path "/sys/policy/*" {
-  capabilities = ["sudo","create","delete","update"]
+  capabilities = ["create","delete","update"]
 }
 
 path "/sys/capabilities" {
@@ -56,5 +56,9 @@ path "/sys/revoke" {
 
 path "/sys/key-status" {
   capabilities = ["read"]
+}
+
+path "/sys/rotate" {
+  capabilities = ["sudo","update",]
 }
 
